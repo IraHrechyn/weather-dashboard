@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Inika';
+  src: url('/assets/fonts/Inika-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+
+body, html{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inika', serif;
+  background: linear-gradient(to top left, #79919D, #E0D2C7);
+}

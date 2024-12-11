@@ -1,1 +1,22 @@
-<p>weather-sidebar works!</p>
+<div class="weather-sidebar-container">
+  <div class="app-title">
+    <h1 class="title-main">Weather</h1>
+    <h2 class="title-sub">DASHBOARD</h2>
+  </div>
+
+  <p class="city-info">Hello,<br>here you can view the weather <br> for your city and more.</p>
+
+  <div #cityContainer class="city-container hidden">
+    <p class="city-info">Enter your city to add card<br> to show the weather in the city</p>
+    <input type="text" class="inputs">
+    <button class="buttons">add</button>
+  </div>
+
+  <div class="toggle">
+    <p class="toggle-text">
+      <span *ngIf="visibility; else showText">collapse to hide the city input</span>
+      <ng-template #showText>expand to add city</ng-template>
+    </p>
+    <button (click)="visibilityCityContainer()" class="toggle-button">◭</button>
+  </div>
+</div>
