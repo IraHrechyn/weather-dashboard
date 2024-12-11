@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild} from '@angular/core';
 import {CommonModule} from "@angular/common";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-weather-sidebar',
@@ -14,6 +15,9 @@ export class WeatherSidebarComponent {
   @ViewChild('cityContainer') cityContainer: ElementRef | undefined;
 
   visibility: boolean = false;
+
+  constructor(private data: DataService) {
+  }
 
   visibilityCityContainer() {
     this.visibility = !this.visibility;
@@ -30,5 +34,10 @@ export class WeatherSidebarComponent {
 
     const button = document.querySelector('.toggle-button');
     button?.classList.toggle('active');
+  }
+
+  addCity(cityInput: HTMLInputElement) {
+    this.data.cityTitle = cityInput.value;
+    cityInput.value = '';
   }
 }

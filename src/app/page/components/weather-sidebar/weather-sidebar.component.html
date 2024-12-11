@@ -8,8 +8,8 @@
 
   <div #cityContainer class="city-container hidden">
     <p class="city-info">Enter your city to add card<br> to show the weather in the city</p>
-    <input type="text" class="inputs">
-    <button class="buttons">add</button>
+    <input type="text" class="inputs" #cityInput>
+    <button class="buttons" (click)="addCity(cityInput)">add</button>
   </div>
 
   <div class="toggle">
