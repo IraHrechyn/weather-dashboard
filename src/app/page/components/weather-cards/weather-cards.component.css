@@ -3,34 +3,29 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 40px 0;
   flex-direction: column;
-}
-
-.weather-cards-container {
-  margin-top: 40px;
-  bottom: 0;
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-  max-height: 560px;
-  overflow-y: auto;
+  gap: 20px;
 }
 
 .card-find{
   width: 100%;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-.inputs{
-  width: 40%;
+.weather-cards-container {
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 app-card-filling{
-  width: calc(33.33% - 24px);
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -48,41 +43,41 @@ app-card-filling{
   border-radius: 10px;
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 600px) {
   app-card-filling{
-    width: calc(50% - 24px);
-  }
-
-  .weather-cards-container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    height: auto;
-    overflow-y: hidden;
-    margin-left: 70px;
-  }
-
-  .card-find{
-    margin-top: 30px;
+    width: 50%;
   }
 }
 
-@media (max-width: 500px) {
-  app-card-filling{
-    width: calc(100% - 24px);
-  }
-
-  .card-find{
-    margin: 30px 0 0 25px;
-    flex-direction: column;
+@media (min-width: 1080px) {
+  .cards-list {
+    padding: 30px;
+    height: calc(100% - 60px)
   }
 
   .weather-cards-container {
-    margin-right: 23px;
-    height: auto;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .card-find{
+    flex-direction: row;
   }
 
   .inputs{
-    width: 70%;
+    width: 60%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .weather-cards-container {
+    width: calc(100% - 60px);
+    overflow-y: auto;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  app-card-filling{
+    width: 33.33%;
   }
 }
