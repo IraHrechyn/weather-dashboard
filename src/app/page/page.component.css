@@ -3,7 +3,6 @@
   width: 100%;
   height: 100vh;
   padding: 40px;
-  overflow: hidden;
   justify-content: center;
 }
 
@@ -17,7 +16,7 @@ app-weather-cards {
   max-width: 70%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 980px) {
   .content-container {
     width: auto;
     height: auto;
@@ -39,12 +38,12 @@ app-weather-cards {
 
   .weather-sidebar-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
   }
 }
 
-@media (max-width: 1200px) and (min-width: 769px) {
+@media (max-width: 1200px) and (min-width: 980px) {
   app-weather-sidebar {
     flex: 0 0 40%;
     max-width: 40%;
@@ -53,6 +52,10 @@ app-weather-cards {
   app-weather-cards {
     flex: 0 0 60%;
     max-width: 60%;
+  }
+
+  .content-container{
+    overflow: auto;
   }
 }
 

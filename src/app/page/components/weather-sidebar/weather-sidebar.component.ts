@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {DataService} from "../../services/data.service";
+import {WeatherService} from "../../services/weather-api.service";
 
 @Component({
   selector: 'app-weather-sidebar',
@@ -16,8 +17,7 @@ export class WeatherSidebarComponent {
 
   visibility: boolean = false;
 
-  constructor(private data: DataService) {
-  }
+  constructor(private data: DataService, private weatherService: WeatherService) {}
 
   visibilityCityContainer() {
     this.visibility = !this.visibility;
@@ -36,8 +36,24 @@ export class WeatherSidebarComponent {
     button?.classList.toggle('active');
   }
 
-  addCity(cityInput: HTMLInputElement) {
-    this.data.cityTitle = cityInput.value;
-    cityInput.value = '';
+  addCity(cityInput: HTMLInputElement): void {
+    const cityName = cityInput.value.trim();
+
+    if (cityName && !this.data.cities.includes(cityName)) {
+      this.data.addCity(cityName);
+
+      cityInput.value = '';
+
+      this.weatherService.getWeatherData(cityName).subscribe({
+        next: (weatherData) => {
+          console.log('Weather data for city', cityName, weatherData);
+        },
+        error: (error) => {
+          console.error('Error fetching weather data for city:', error);
+        },
+      });
+    } else if (this.data.cities.includes(cityName)) {
+      console.warn('City is already in the list');
+    }
   }
 }

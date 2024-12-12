@@ -1,0 +1,16 @@
+<div class="cards-list">
+<div class="card-find">
+  <input type="text" class="inputs" placeholder="enter the city name to find the same card">
+  <button class="buttons" >search</button>
+</div>
+  <div *ngIf="weatherDataList.length > 0" class="weather-cards-container">
+    <app-card-filling
+      *ngFor="let weatherData of weatherDataList"
+      [cityName]="weatherData.cityName"
+      [currentTemperature]="weatherData.currentTemperature"
+      [weatherCondition]="weatherData.weatherCondition"
+      [description]="weatherData.description"
+      [forecast]="weatherData.forecast"
+    ></app-card-filling>
+  </div>
+</div>

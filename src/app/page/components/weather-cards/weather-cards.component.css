@@ -1,0 +1,88 @@
+.cards-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.weather-cards-container {
+  margin-top: 40px;
+  bottom: 0;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  max-height: 550px;
+  overflow-y: auto;
+}
+
+.card-find{
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs{
+  width: 40%;
+}
+
+app-card-filling{
+  width: calc(33.33% - 24px);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #586774;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #6A7A82;
+  border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+  app-card-filling{
+    width: calc(50% - 24px);
+  }
+
+  .weather-cards-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    overflow-y: hidden;
+    margin-left: 70px;
+  }
+
+  .card-find{
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  app-card-filling{
+    width: calc(100% - 24px);
+  }
+
+  .card-find{
+    margin: 30px 0 0 25px;
+    flex-direction: column;
+  }
+
+  .weather-cards-container {
+    margin-right: 23px;
+    height: auto;
+  }
+
+  .inputs{
+    width: 70%;
+  }
+}

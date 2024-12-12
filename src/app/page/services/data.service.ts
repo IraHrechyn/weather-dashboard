@@ -1,29 +1,68 @@
 import { Injectable } from '@angular/core';
-import {WeatherService} from "./weather-api.service";
-
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-  private _cityTitle: string = '';
+  private _cityTitle: string = ''; // Поточне значення заголовка міста
+  private citiesSubject = new BehaviorSubject<string[]>([]); // Потік для списку міст
+  cities$ = this.citiesSubject.asObservable(); // Observable для підписки
+
   private readonly _API_URL = 'https://api.openweathermap.org/data/2.5';
   private readonly _API_KEY = 'a3114b818d30c4727d823e3163c9653d';
 
+  constructor() {
+    if (typeof localStorage !== 'undefined') {
+      const storedCities = localStorage.getItem('cities');
+      if (storedCities) {
+        this.citiesSubject.next(JSON.parse(storedCities));
+      }
+    }
+  }
 
-  get cityTitle(){
+  get cityTitle(): string {
     return this._cityTitle;
   }
 
-  set cityTitle(value: string){
+  set cityTitle(value: string) {
     this._cityTitle = value;
   }
 
-  get API_URL(){
+  get cities(): string[] {
+    return this.citiesSubject.value;
+  }
+
+  updateCities(cities: string[]): void {
+    this.citiesSubject.next(cities);
+    this.saveCitiesToLocalStorage();
+  }
+
+  addCity(city: string): void {
+    if (!this.cities.includes(city)) { // Уникнення дублювання
+      const updatedCities = [...this.cities, city];
+      this.citiesSubject.next(updatedCities);
+      this.saveCitiesToLocalStorage();
+    }
+  }
+
+  removeCity(city: string): void {
+    const updatedCities = this.cities.filter((c) => c !== city);
+    this.citiesSubject.next(updatedCities);
+    this.saveCitiesToLocalStorage();
+  }
+
+  get API_URL(): string {
     return this._API_URL;
   }
 
-  get API_KEY(){
+  get API_KEY(): string {
     return this._API_KEY;
+  }
+
+  private saveCitiesToLocalStorage(): void {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('cities', JSON.stringify(this.cities));
+    }
   }
 }

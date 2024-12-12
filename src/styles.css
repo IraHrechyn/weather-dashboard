@@ -4,6 +4,12 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'InclusiveSans';
+  src: url('/assets/fonts/InclusiveSans-Regular.ttf') format('truetype');
+  font-style: normal;
+}
+
 body, html{
   margin: 0;
   padding: 0;
@@ -12,4 +18,10 @@ body, html{
   overflow: hidden;
   font-family: 'Inika', serif;
   background: linear-gradient(to top left, #79919D, #E0D2C7);
+}
+
+@media (max-width: 1200px) {
+  body, html{
+    overflow: auto;
+  }
 }
