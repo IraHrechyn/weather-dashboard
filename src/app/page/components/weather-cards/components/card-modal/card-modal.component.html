@@ -1,1 +1,22 @@
-<p>card-modal works!</p>
+<div class="modal">
+  <div class="modal-content">
+    <h2 class="city-title">{{ data.cityName }}</h2>
+
+    <div class="forecast-container">
+      <div *ngFor="let forecast of data.forecast" class="day-forecast">
+        <p class="forecast-date">{{ forecast.date }}</p>
+        <img [src]="dataService.getWeatherIcon(forecast.condition)" alt="{{ forecast.condition }}" class="forecast-icon" />
+
+        <div class="text-info">
+          <div class="description">
+            <p>{{ forecast.condition }}</p>
+            <p>{{ forecast.subDescription }}</p>
+          </div>
+
+          <p class="temperature">{{ forecast.temperature }}°</p>
+        </div>
+      </div>
+    </div>
+    <button class="close-button" (click)="closeModal()">✕</button>
+  </div>
+</div>

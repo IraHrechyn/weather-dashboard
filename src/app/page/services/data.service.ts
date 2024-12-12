@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import {WEATHER_ICON_MAP} from "../types/weather-icons.constants";
 
 @Injectable({
   providedIn: 'root',
@@ -64,5 +65,9 @@ export class DataService {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('cities', JSON.stringify(this.cities));
     }
+  }
+
+  getWeatherIcon(condition: string): string {
+    return WEATHER_ICON_MAP[condition.toLowerCase()] || 'assets/weather-icons/cloudy.png';
   }
 }

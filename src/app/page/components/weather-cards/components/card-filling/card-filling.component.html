@@ -5,7 +5,7 @@
   </div>
 
   <div class="weather-info">
-    <img [src]="getWeatherIcon(weatherCondition)" alt="{{ weatherCondition }}" class="forecast-icon" />
+    <img [src]="data.getWeatherIcon(weatherCondition)" alt="{{ weatherCondition }}" class="forecast-icon" />
     <div class="text-info">
       <div class="description">
         <p>{{ weatherCondition }}</p>
@@ -13,15 +13,5 @@
       </div>
       <p class="temperature">{{ currentTemperature }}°</p>
     </div>
-
   </div>
-
-<!--  <div *ngIf="forecast.length">-->
-<!--    <h3>Forecast:</h3>-->
-<!--    <ul>-->
-<!--      <li *ngFor="let item of forecast">-->
-<!--        <strong>{{ item.date }}:</strong> {{ item.temperature }}°C - {{ item.condition }}-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
 </div>

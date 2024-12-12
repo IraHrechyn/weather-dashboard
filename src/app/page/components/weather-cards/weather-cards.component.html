@@ -1,8 +1,8 @@
 <div class="cards-list">
-<div class="card-find">
-  <input type="text" class="inputs" placeholder="enter the city name to find the same card">
-  <button class="buttons" >search</button>
-</div>
+  <div class="card-find">
+    <input type="text" class="inputs" placeholder="Enter the city name to find the same card" />
+    <button class="buttons">Search</button>
+  </div>
   <div *ngIf="weatherDataList.length > 0" class="weather-cards-container">
     <app-card-filling
       *ngFor="let weatherData of weatherDataList"
@@ -11,6 +11,13 @@
       [weatherCondition]="weatherData.weatherCondition"
       [description]="weatherData.description"
       [forecast]="weatherData.forecast"
+      (click)="openModal(weatherData)"
     ></app-card-filling>
+  </div>
+  <div  *ngIf="isModalOpen">
+  <app-card-modal
+    [data]="selectedCard!"
+    (close)="closeModal()"
+  ></app-card-modal>
   </div>
 </div>

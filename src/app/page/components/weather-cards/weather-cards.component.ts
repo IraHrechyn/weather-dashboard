@@ -5,13 +5,15 @@ import {DataService} from "../../services/data.service";
 import {CommonModule} from "@angular/common";
 import {CardFillingComponent} from "./components/card-filling/card-filling.component";
 import {Subscription} from "rxjs";
+import {CardModalComponent} from "./components/card-modal/card-modal.component";
 
 @Component({
   selector: 'app-weather-cards',
   standalone: true,
   imports: [
     CommonModule,
-    CardFillingComponent
+    CardFillingComponent,
+    CardModalComponent
   ],
   templateUrl: './weather-cards.component.html',
   styleUrls: ['./weather-cards.component.css', '../../styles/input-and-button.css']
@@ -22,6 +24,10 @@ export class WeatherCardsComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
 
   private citiesSubscription!: Subscription;
+
+  selectedCard: WeatherData | null = null; // Вибрана картка
+  isModalOpen: boolean = false;// Стан модального вікна
+
 
   constructor(
     private weatherService: WeatherService,
@@ -57,5 +63,16 @@ export class WeatherCardsComponent implements OnInit, OnDestroy {
         },
       });
     });
+  }
+
+  openModal(card: WeatherData): void {
+    this.selectedCard = card; // Зберігаємо вибрану картку
+    console.log(this.selectedCard );
+    this.isModalOpen = true; // Відкриваємо модальне вікно
+  }
+
+  closeModal(): void {
+    this.selectedCard = null; // Очищаємо вибрану картку
+    this.isModalOpen = false; // Закриваємо модальне вікно
   }
 }

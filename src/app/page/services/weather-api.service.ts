@@ -33,7 +33,8 @@ export class WeatherService {
               .map((entry: any) => ({
                 date: new Date(entry.dt * 1000).toLocaleDateString(),
                 temperature: entry.main.temp,
-                condition: entry.weather[0].description,
+                condition: entry.weather[0].main,
+                subDescription: entry.weather[0].description,
               }));
             return currentWeather;
           }), catchError(this.handleError)

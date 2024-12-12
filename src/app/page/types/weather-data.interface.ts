@@ -7,5 +7,6 @@ export interface WeatherData {
     date: string;
     temperature: number;
     condition: string;
+    subDescription: string;
   }>;
 }
