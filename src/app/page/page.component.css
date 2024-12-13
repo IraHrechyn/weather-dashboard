@@ -9,7 +9,6 @@
 @media (min-width: 600px) {
   .content-container{
     padding: 45px;
-    max-width: 550px;
   }
 }
 
@@ -34,13 +33,13 @@
 }
 
 @media (min-width: 1200px) {
-  app-weather-sidebar {
-    flex: 0 0 30%;
-    max-width: 30%;
-  }
+  /*app-weather-sidebar {*/
+  /*  flex: 0 0 30%;*/
+  /*  max-width: 30%;*/
+  /*}*/
 
-  app-weather-cards {
-    flex: 0 0 70%;
-    max-width: 70%;
-  }
+  /*app-weather-cards {*/
+  /*  flex: 0 0 70%;*/
+  /*  max-width: 70%;*/
+  /*}*/
 }

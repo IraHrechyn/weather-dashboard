@@ -6,6 +6,7 @@
   padding: 40px 0;
   flex-direction: column;
   gap: 20px;
+  overflow: auto;
 }
 
 .card-find{
@@ -22,6 +23,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  overflow-x: hidden;
 }
 
 app-card-filling{
@@ -47,6 +49,9 @@ app-card-filling{
   app-card-filling{
     width: 50%;
   }
+  .cards-list{
+
+  }
 }
 
 @media (min-width: 1080px) {
@@ -57,7 +62,7 @@ app-card-filling{
 
   .weather-cards-container {
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
   }
 
   .card-find{
@@ -74,7 +79,7 @@ app-card-filling{
     width: calc(100% - 60px);
     overflow-y: auto;
     align-items: stretch;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
   app-card-filling{

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import {WEATHER_ICON_MAP} from "../types/weather-icons.constants";
+import {WeatherData} from "../types/weather-data.interface";
+import {log} from "util";
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +49,7 @@ export class DataService {
     }
   }
 
+
   removeCity(city: string): void {
     const updatedCities = this.cities.filter((c) => c !== city);
     this.citiesSubject.next(updatedCities);
@@ -63,6 +66,7 @@ export class DataService {
 
   private saveCitiesToLocalStorage(): void {
     if (typeof localStorage !== 'undefined') {
+      console.log(JSON.stringify(this.cities));
       localStorage.setItem('cities', JSON.stringify(this.cities));
     }
   }
@@ -70,4 +74,15 @@ export class DataService {
   getWeatherIcon(condition: string): string {
     return WEATHER_ICON_MAP[condition.toLowerCase()] || 'assets/weather-icons/cloudy.png';
   }
+
+  searchWeatherData(weatherDataList: WeatherData[], searchTerm: string): WeatherData[] {
+    if (searchTerm.trim() === '') {
+      return [...weatherDataList]; // Якщо термін пошуку порожній, повертаємо весь список
+    }
+    const searchTermLower = searchTerm.trim().toLowerCase();
+    return weatherDataList.filter((weatherData) =>
+      weatherData.cityName.toLowerCase().includes(searchTermLower)
+    );
+  }
+
 }

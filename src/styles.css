@@ -9,19 +9,15 @@
   src: url('/assets/fonts/InclusiveSans-Regular.ttf') format('truetype');
   font-style: normal;
 }
-
 body, html{
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
   font-family: 'Inika', serif;
   background: linear-gradient(to top left, #79919D, #E0D2C7);
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 1080px) {
   body, html{
-    overflow: auto;
+    height: 100%;
   }
 }

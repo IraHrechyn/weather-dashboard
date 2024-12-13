@@ -37,23 +37,23 @@ export class WeatherSidebarComponent {
   }
 
   addCity(cityInput: HTMLInputElement): void {
+    console.log(this.data.cities);
     const cityName = cityInput.value.trim();
 
-    if (cityName && !this.data.cities.includes(cityName)) {
-      this.data.addCity(cityName);
-
-      cityInput.value = '';
-
+    if (cityName) {
       this.weatherService.getWeatherData(cityName).subscribe({
         next: (weatherData) => {
-          console.log('Weather data for city', cityName, weatherData);
+          if (!this.data.cities.includes(cityName)) {
+            console.log("addd")
+            this.data.addCity(cityName);
+          }
+          cityInput.value = '';
         },
-        error: (error) => {
-          console.error('Error fetching weather data for city:', error);
+        error: () => {
+          alert(`Не вдалося знайти інформацію про місто "${cityName}". Перевірте правильність написання.`);
+
         },
       });
-    } else if (this.data.cities.includes(cityName)) {
-      console.warn('City is already in the list');
     }
   }
 }

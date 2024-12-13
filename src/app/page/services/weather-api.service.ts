@@ -10,6 +10,7 @@ import {DataService} from "./data.service";
   providedIn: 'root'
 })
 export class WeatherService {
+
   constructor(private http: HttpClient, private data: DataService) {}
 
   getWeatherData(cityName: string): Observable<WeatherData> {
