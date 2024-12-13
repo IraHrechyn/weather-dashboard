@@ -7,7 +7,6 @@ import {CardFillingComponent} from "./components/card-filling/card-filling.compo
 import {Subscription} from "rxjs";
 import {CardModalComponent} from "./components/card-modal/card-modal.component";
 import {FormsModule} from "@angular/forms";
-import {log} from "util";
 
 @Component({
   selector: 'app-weather-cards',
@@ -23,51 +22,41 @@ import {log} from "util";
 })
 export class WeatherCardsComponent implements OnInit, OnDestroy {
   weatherDataList: WeatherData[] = [];
-  isLoading: boolean = true;
-  errorMessage: string = '';
+  filteredWeatherDataList: WeatherData[] = [];
+
+  selectedCard: WeatherData | null = null;
+  isModalOpen: boolean = false;
+
+  searchTerm: string = '';
 
   private citiesSubscription!: Subscription;
 
-  filteredWeatherDataList: WeatherData[] = [];
-  selectedCard: WeatherData | null = null;
-  isModalOpen: boolean = false;
-  searchTerm: string = '';
-
   constructor(
     private weatherService: WeatherService,
-    private dataService: DataService,
-    private cdr: ChangeDetectorRef
+    private dataService: DataService
   ) {}
 
   ngOnInit(): void {
     this.citiesSubscription = this.dataService.cities$.subscribe((cities) => {
       this.loadWeatherData(cities);
     });
-    console.log(this.filteredWeatherDataList);
   }
 
   ngOnDestroy(): void {
-    if (this.citiesSubscription) {
-      this.citiesSubscription.unsubscribe();
-    }
+    if (this.citiesSubscription) this.citiesSubscription.unsubscribe();
   }
 
   loadWeatherData(cities: string[]): void {
-    this.isLoading = true;
-    this.errorMessage = '';
     cities.forEach((cityName) => {
-
       const existingCard = this.weatherDataList.find(
         (data) => data.cityName.toLowerCase() === cityName.toLowerCase()
       );
 
       if (!existingCard) {
         this.weatherService.getWeatherData(cityName).subscribe({
-          next: (weatherData) => {
-           this.weatherDataList.push(weatherData);
-          },
+          next: (weatherData) => {this.weatherDataList.push(weatherData);},
           error: (error) => {
-            console.error(`Не вдалося отримати дані для міста ${cityName}:`, error);
+            console.error(`Failed to get data for city ${cityName}:`, error);
           }
         });
       }
@@ -86,7 +75,6 @@ export class WeatherCardsComponent implements OnInit, OnDestroy {
 
   openModal(card: WeatherData): void {
     this.selectedCard = card;
-    console.log(this.selectedCard );
     this.isModalOpen = true;
   }
 
@@ -96,15 +84,11 @@ export class WeatherCardsComponent implements OnInit, OnDestroy {
   }
 
   removeCity(cityName: string): void {
-    // Remove city from the weatherDataList
     this.weatherDataList = this.weatherDataList.filter(
       (data) => data.cityName.toLowerCase() !== cityName.toLowerCase()
     );
 
-    // Update filtered list
     this.filteredWeatherDataList = [...this.weatherDataList];
-
-    // Remove city from the cities list in the DataService
     this.dataService.removeCity(cityName);
   }
 }

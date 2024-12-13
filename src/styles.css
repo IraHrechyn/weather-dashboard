@@ -9,6 +9,7 @@
   src: url('/assets/fonts/InclusiveSans-Regular.ttf') format('truetype');
   font-style: normal;
 }
+
 body, html{
   margin: 0;
   padding: 0;

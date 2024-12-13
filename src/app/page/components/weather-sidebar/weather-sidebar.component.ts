@@ -37,21 +37,18 @@ export class WeatherSidebarComponent {
   }
 
   addCity(cityInput: HTMLInputElement): void {
-    console.log(this.data.cities);
     const cityName = cityInput.value.trim();
 
     if (cityName) {
       this.weatherService.getWeatherData(cityName).subscribe({
         next: (weatherData) => {
           if (!this.data.cities.includes(cityName)) {
-            console.log("addd")
             this.data.addCity(cityName);
           }
           cityInput.value = '';
         },
         error: () => {
           alert(`Не вдалося знайти інформацію про місто "${cityName}". Перевірте правильність написання.`);
-
         },
       });
     }

@@ -9,6 +9,7 @@
   <div #cityContainer class="city-container hidden">
     <label class="city-info">Enter your city to add card<br> to show the weather in the city</label>
     <input type="text" class="inputs" #cityInput>
+
     <button class="buttons" (click)="addCity(cityInput)">add</button>
   </div>
 
@@ -17,6 +18,7 @@
       <span *ngIf="visibility; else showText">collapse to hide the city input</span>
       <ng-template #showText>expand to add city</ng-template>
     </p>
+
     <button (click)="visibilityCityContainer()" class="toggle-button">◭</button>
   </div>
 </div>

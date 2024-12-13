@@ -24,12 +24,13 @@
   overflow: hidden;
   transform: translate(-50%, -50%);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(to top, #60899C, #3C515D);
+  /*background: linear-gradient(to top, #60899C, #3C515D);*/
+  background: #BCBEBD;
 }
 
 .city-title{
-  color: #BECFDD;
-  font-size: 30px;
+  color: #2E4152;
+  font-size: 35px;
   text-align: center;
 }
 
@@ -84,7 +85,7 @@
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: #BECFDD;
+  color: #2E4152;
 }
 
 ::-webkit-scrollbar {

@@ -18,6 +18,7 @@ export class CardModalComponent {
   @Output() close = new EventEmitter<void>();
 
   constructor(public dataService: DataService) {}
+
   closeModal(): void {
     this.close.emit();
   }

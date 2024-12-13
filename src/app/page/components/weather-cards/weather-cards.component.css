@@ -74,7 +74,7 @@ app-card-filling{
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1300px) {
   .weather-cards-container {
     width: calc(100% - 60px);
     overflow-y: auto;

@@ -5,6 +5,7 @@
     <div class="forecast-container">
       <div *ngFor="let forecast of data.forecast" class="day-forecast">
         <p class="forecast-date">{{ forecast.date }}</p>
+
         <img [src]="dataService.getWeatherIcon(forecast.condition)" alt="{{ forecast.condition }}" class="forecast-icon" />
 
         <div class="text-info">
@@ -17,6 +18,7 @@
         </div>
       </div>
     </div>
+
     <button class="close-button" (click)="closeModal()">✕</button>
   </div>
 </div>

@@ -1,7 +1,11 @@
 <div class="weather-card">
   <div class="card-top">
     <h2 class="city-title">{{ weatherData.cityName }}</h2>
-    <img src="../../../../../../assets/trash.png" alt="trash" class="trash-icon" (click)="removeCity(weatherData.cityName)"/>
+    <img
+      src="../../../../../../assets/trash.png"
+      alt="trash"
+      class="trash-icon"
+      (click)="removeCity(weatherData.cityName)"/>
   </div>
 
   <div class="weather-info">
@@ -10,11 +14,13 @@
       alt="{{ weatherData.weatherCondition }}"
       (click)="openWeatherModal(weatherData)"
       class="forecast-icon" />
+
     <div class="text-info">
       <div class="description">
         <p>{{ weatherData.weatherCondition }}</p>
         <p>{{ weatherData.description }}</p>
       </div>
+
       <p class="temperature">{{ weatherData.currentTemperature }}°</p>
     </div>
   </div>
